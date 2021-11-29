@@ -1,0 +1,1 @@
+export default authType = ["System Admin" , "Poll Admin Client" , "BLO" , "Data Collector"];
