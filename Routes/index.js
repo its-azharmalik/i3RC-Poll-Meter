@@ -1,0 +1,1 @@
+const authRoutes = require('./auth.routes');
