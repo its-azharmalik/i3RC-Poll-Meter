@@ -40,7 +40,7 @@ const LoginUser = async (req , res) =>{
 const homeUser = async(req,res)=>{
     const user = req.user;
     // console.log(user )
-    res.send({user});
+    res.send("Welcome back , you're a " + user.authType);
 }
 
 router.post('/login' , checkauth , LoginUser);
