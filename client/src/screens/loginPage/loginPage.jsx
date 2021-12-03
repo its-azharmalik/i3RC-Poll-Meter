@@ -1,12 +1,22 @@
 import React, { useCallback, useRef } from 'react';
 import './loginPage.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { userLoginAction } from '../../actions/userActions';
 
 function LoginPage() {
+  const dispatch = useDispatch();
+  const userLoggedin = useSelector((state) => state.userLogin);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const onLogin = useCallback(() => {
-    console.log(emailRef.current.value);
-    console.log(passwordRef.current.value);
+    dispatch(
+      userLoginAction(emailRef.current.value, passwordRef.current.value)
+    );
+    if (userLoggedin) {
+      console.log('loggedin');
+    } else {
+      console.log('ilee');
+    }
   });
   return (
     <div className="login-page">
@@ -30,7 +40,13 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit" onClick={onLogin}>
+        <button
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            onLogin();
+          }}
+        >
           Login
         </button>
       </form>

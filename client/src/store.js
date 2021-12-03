@@ -5,4 +5,4 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
 });
 
-const store = createStore(reducer);
+export const store = createStore(reducer);
