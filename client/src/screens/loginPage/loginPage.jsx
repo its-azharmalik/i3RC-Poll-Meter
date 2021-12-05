@@ -1,40 +1,45 @@
-import React, { useCallback, useRef, useState, useEffect, history } from 'react';
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
+import React, {
+  useCallback,
+  useRef,
+  useState,
+  useEffect,
+  history,
+} from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './loginPage.css';
-import { userLoginAction} from '../../actions/userActions'
+import { userLoginAction } from '../../actions/userActions';
 
 function LoginPage() {
-
   // state
   // const [email, setEmail] = useState('')
   // const [password, setPassword] = useState('')
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { loading, error, userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
 
   // const redirect = location.search ? location.search.split('=')[1] : '/'
   const history = useHistory();
 
   useEffect(() => {
-    if (userInfo && userInfo.user == "Data Collector") {
-      history.push('/blank')
+    if (userInfo && userInfo.user == 'Data Collector') {
+      // history.push('/blank');
     }
-  }, [userInfo])
+  }, [userInfo]);
 
-  const submitHandler = useCallback( async (e) => {
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-    e.preventDefault()
-    dispatch(userLoginAction(email, password))
-  }, [emailRef, passwordRef])
-
-
+  const submitHandler = useCallback(
+    async (e) => {
+      const email = emailRef.current.value;
+      const password = passwordRef.current.value;
+      e.preventDefault();
+      dispatch(userLoginAction(email, password));
+    },
+    [emailRef, passwordRef]
+  );
 
   return (
     <div className="login-page">
@@ -58,9 +63,7 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit">
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
