@@ -4,6 +4,9 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   // USER_LOGOUT,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
 } from '../constants/userConstants'
 
 export const userLoginAction = (email, password) => async(dispatch) => {
@@ -30,6 +33,7 @@ export const userLoginAction = (email, password) => async(dispatch) => {
     })
 
     localStorage.setItem('userInfo', JSON.stringify(data))
+    
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -40,3 +44,4 @@ export const userLoginAction = (email, password) => async(dispatch) => {
     })
   }
 };
+

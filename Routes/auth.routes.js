@@ -29,8 +29,10 @@ const LoginUser = async (req , res) =>{
             email , password , authType , name
         };
         const accessToken = jwt.sign(jwtUser , process.env.ACCESS_TOKEN);
+        const user = req.user;
         res.json({
-            AccessToken : accessToken
+            AccessToken : accessToken,
+            user: user[0].authType
         });
     } catch (error) {
         res.status(400).json(error);
@@ -40,7 +42,7 @@ const LoginUser = async (req , res) =>{
 const homeUser = async(req,res)=>{
     const user = req.user;
     // console.log(user )
-    res.send("Welcome back , you're a " + user.authType);
+    res.json(user);
 }
 
 router.post('/login' , checkauth , LoginUser);

@@ -1,13 +1,17 @@
-import React, { useCallback, useRef, useState, useEffect } from 'react';
+import React, { useCallback, useRef, useState, useEffect, history } from 'react';
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import './loginPage.css';
-import { userLoginAction } from '../../actions/userActions'
+import { userLoginAction} from '../../actions/userActions'
 
-function LoginPage({location, history}) {
+function LoginPage() {
 
   // state
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [password, setPassword] = useState('')
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  
 
   const dispatch = useDispatch()
 
@@ -15,25 +19,23 @@ function LoginPage({location, history}) {
   const { loading, error, userInfo } = userLogin
 
   // const redirect = location.search ? location.search.split('=')[1] : '/'
+  const history = useHistory();
 
   useEffect(() => {
-    if (userInfo) {
-      // history.push(redirect)
+    if (userInfo && userInfo.user == "Data Collector") {
+      history.push('/blank')
     }
-  }, [history, userInfo])
+  }, [userInfo])
 
-  const submitHandler = (e) => {
+  const submitHandler = useCallback( async (e) => {
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
     e.preventDefault()
     dispatch(userLoginAction(email, password))
-  }
+  }, [emailRef, passwordRef])
 
 
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const onLogin = useCallback(() => {
-    console.log(emailRef.current.value);
-    console.log(passwordRef.current.value);
-  });
+
   return (
     <div className="login-page">
       <form className="login-form-container" onSubmit={submitHandler}>
@@ -44,8 +46,6 @@ function LoginPage({location, history}) {
             type="email"
             placeholder="Enter your email"
             ref={emailRef}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -55,8 +55,6 @@ function LoginPage({location, history}) {
             type="password"
             placeholder="Enter your password"
             ref={passwordRef}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
