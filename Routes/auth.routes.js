@@ -29,7 +29,7 @@ const LoginUser = async (req , res) =>{
             email , password , authType , name
         };
         const accessToken = jwt.sign(jwtUser , process.env.ACCESS_TOKEN);
-        res.send({
+        res.json({
             AccessToken : accessToken
         });
     } catch (error) {

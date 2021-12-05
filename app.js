@@ -17,7 +17,7 @@ app.use(bd.urlencoded({
     extended: true
 }));
 app.use(morgan('dev'));
-app.use('/' , router);
+app.use('/api' , router);
 
 //Database DB variable
 const { db } = require('./Config')
@@ -29,4 +29,4 @@ app.get('/home' , (req,res)=>{
     res.send("Home");
 })
 
-app.listen('3000' , () => console.log("server connected on port 3000") )
+app.listen('5001' , () => console.log("server connected on port 3000") )
