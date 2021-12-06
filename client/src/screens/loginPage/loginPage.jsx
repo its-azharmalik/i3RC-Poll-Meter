@@ -1,19 +1,13 @@
 import React, {
   useCallback,
-  useRef,
-  useState,
-  useEffect,
-  history,
+  useRef
 } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './loginPage.css';
 import { userLoginAction } from '../../actions/userActions';
 
 function LoginPage() {
-  // state
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
+
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -21,15 +15,6 @@ function LoginPage() {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
-
-  // const redirect = location.search ? location.search.split('=')[1] : '/'
-  const history = useHistory();
-
-  useEffect(() => {
-    if (userInfo && userInfo.user == 'Data Collector') {
-      // history.push('/blank');
-    }
-  }, [userInfo]);
 
   const submitHandler = useCallback(
     async (e) => {
