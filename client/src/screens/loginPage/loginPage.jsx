@@ -1,13 +1,9 @@
-import React, {
-  useCallback,
-  useRef
-} from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './loginPage.css';
 import { userLoginAction } from '../../actions/userActions';
 
 function LoginPage() {
-
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -22,7 +18,6 @@ function LoginPage() {
       const password = passwordRef.current.value;
       e.preventDefault();
       dispatch(userLoginAction(email, password));
-      console.log('hello')
     },
     [emailRef, passwordRef]
   );

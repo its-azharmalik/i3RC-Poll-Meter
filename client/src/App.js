@@ -1,17 +1,17 @@
 import LoginPage from './screens/loginPage/loginPage';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Dashboard1 from './screens/dashboards/Dashboard1';
+import Dashboard1 from './screens/dashboards/dashboard1';
 
 function App() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  
+
   return (
     <Router>
       <div className="App">
         <Route exact path="/">
-          {userInfo?.user === 'System Admin' ? (
+          {userInfo?.authType === 'Data Collector' ? (
             <Redirect to="/home" />
           ) : (
             <LoginPage />
