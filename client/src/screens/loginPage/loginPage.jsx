@@ -22,6 +22,7 @@ function LoginPage() {
       const password = passwordRef.current.value;
       e.preventDefault();
       dispatch(userLoginAction(email, password));
+      console.log('hello')
     },
     [emailRef, passwordRef]
   );

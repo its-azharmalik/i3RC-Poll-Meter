@@ -12,7 +12,7 @@ const createUser = async (req,res) =>{
             name ,
             email ,
             password ,
-            authType 
+            authType
         }
         user.password = await bcrypt.hash(req.body.password , 10);
         const userCreated = await User.create(user);
@@ -32,7 +32,7 @@ const LoginUser = async (req , res) =>{
         const user = req.user;
         res.json({
             AccessToken : accessToken,
-            user: user[0].authType
+            authType: user[0].authType,
         });
     } catch (error) {
         res.status(400).json(error);
