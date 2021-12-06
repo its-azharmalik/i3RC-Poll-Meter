@@ -29,4 +29,4 @@ app.get('/home' , (req,res)=>{
     res.send("Home");
 })
 
-app.listen('5001' , () => console.log("server connected on port 3000") )
+app.listen('5001' , () => console.log("server connected on port 5001") )
