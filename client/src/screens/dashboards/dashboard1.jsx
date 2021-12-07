@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { logout } from '../../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import './dashboard.css';
@@ -7,7 +7,10 @@ import { listUsers } from '../../actions/userActions';
 
 const Dashboard1 = () => {
   const dispatch = useDispatch();
-  dispatch(listUsers);
+
+  useEffect(() => {
+    dispatch(listUsers());
+  }, [])
   const userLogin = useSelector((state) => state.userLogin);
   const allUser = useSelector((state) => state.userList);
   const { userInfo } = userLogin;
