@@ -1,0 +1,46 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.25;
+}
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+table {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 80%;
+}
+table caption {
+  font-size: 1.5em;
+  margin: 0.5em 0 0.75em;
+}
+table tr {
+  border: 1px solid #ddd;
+  padding: 0.35em;
+}
+table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+table th,
+table td {
+  padding: 0.625em;
+  text-align: left;
+}
+table th {
+  background: rgb(0, 0, 0);
+  color: #fff;
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

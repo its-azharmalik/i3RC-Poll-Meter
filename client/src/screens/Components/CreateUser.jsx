@@ -16,7 +16,7 @@ const CreateUser = ({ cancelHandeler }) => {
 
   // onsubmit
   const submitHandler = useCallback((e) => {
-    e.preventDefault(); // dhyan rakhein iska
+    // e.preventDefault(); // dhyan rakhein iska ..... Ispr aur bat krni h
     const name = nameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;

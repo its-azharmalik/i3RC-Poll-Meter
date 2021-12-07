@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import './dashboard.css';
 import CreateUser from '../Components/CreateUser';
 import { listUsers } from '../../actions/userActions';
+import UserList from '../Components/userList';
 
 const Dashboard1 = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(listUsers());
-  }, [])
   const userLogin = useSelector((state) => state.userLogin);
   const allUser = useSelector((state) => state.userList);
+  const { users, loading, error } = allUser;
   const { userInfo } = userLogin;
-  console.log(allUser);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(listUsers());
+  }, []);
 
   const [addUserFlag, setAddUserFlag] = useState(false);
   function addUserHandler() {
@@ -50,27 +50,13 @@ const Dashboard1 = () => {
           </button>
         </div>
       </div>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas, fuga nobis
-      exercitationem hic similique magni consequuntur vitae laudantium eos
-      itaque dignissimos at perspiciatis nesciunt, enim quidem illum accusamus?
-      Quam pariatur ratione, earum libero, vel provident voluptatem et sapiente
-      molestiae aliquam officiis a ad architecto doloribus ex deserunt mollitia
-      velit eum harum temporibus? Dolorum pariatur mollitia, unde laboriosam
-      officiis temporibus modi esse omnis deserunt error cum excepturi odio
-      voluptas quam quaerat hic, reiciendis iste voluptatem iure commodi!
-      Voluptatibus nam asperiores praesentium eligendi, eveniet quidem alias?
-      Quos sint voluptatum facere ut suscipit beatae nostrum dolorem saepe esse.
-      Officia deserunt reiciendis distinctio ipsa excepturi, hic totam sapiente
-      aspernatur, ducimus labore beatae perspiciatis a quibusdam odio. Et
-      nostrum vel odio obcaecati doloribus non, officia libero iusto cumque,
-      labore sit numquam tenetur a. Officia quasi ducimus laborum distinctio ut
-      inventore expedita, dolorem a illo culpa eveniet id sunt. Nesciunt illo
-      vitae et quam optio repellat nobis repudiandae fugit dolorem rem expedita
-      reprehenderit, recusandae, tenetur doloribus similique suscipit
-      dignissimos voluptates necessitatibus fuga modi esse quis? Suscipit
-      eveniet quibusdam hic ex, ipsa natus fugit dolores incidunt iste, ea modi,
-      atque tempore accusantium provident alias. Excepturi, reiciendis. Optio
-      autem incidunt natus maiores iste aliquid reiciendis minima odit. Amet?
+      {loading ? (
+        <h1>Loading</h1>
+      ) : error ? (
+        <h1>{error}</h1>
+      ) : (
+        <UserList users={users} />
+      )}
       {addUserFlag && <CreateUser cancelHandeler={cancelHandeler} />}
     </div>
   );
