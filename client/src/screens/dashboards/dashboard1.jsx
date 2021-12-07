@@ -12,13 +12,12 @@ const Dashboard1 = () => {
     <>
       <h1>Welcome {userInfo?.name}</h1>
       {userInfo && <h2>You are a {userInfo.authType}</h2>}
-      This is just dashboard after Screen
       <button
         onClick={() => {
           dispatch(logout());
         }}
       >
-        logout
+        Logout
       </button>
       <CreateUser />
     </>
