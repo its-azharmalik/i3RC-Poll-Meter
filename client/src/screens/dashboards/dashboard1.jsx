@@ -3,11 +3,15 @@ import { logout } from '../../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import './dashboard.css';
 import CreateUser from '../Components/CreateUser';
+import { listUsers } from '../../actions/userActions';
 
 const Dashboard1 = () => {
   const dispatch = useDispatch();
+  dispatch(listUsers);
   const userLogin = useSelector((state) => state.userLogin);
+  const allUser = useSelector((state) => state.userList);
   const { userInfo } = userLogin;
+  console.log(allUser);
 
   const [addUserFlag, setAddUserFlag] = useState(false);
   function addUserHandler() {
