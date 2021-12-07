@@ -24,7 +24,7 @@ function LoginPage() {
 
   return (
     <div className="login-page">
-      <form className="login-form-container" onSubmit={submitHandler}>
+      <form className="form" onSubmit={submitHandler}>
         <div className="logo">I3RC Poll</div>
         <div className="input-field">
           <label htmlFor="">Email</label>
@@ -44,7 +44,9 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button className="login-button" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

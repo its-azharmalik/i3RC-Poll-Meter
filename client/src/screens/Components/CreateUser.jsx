@@ -1,14 +1,15 @@
 import React, { useCallback, useRef } from 'react';
-import { logout, register } from '../../actions/userActions';
+import { register } from '../../actions/userActions';
 import { useDispatch } from 'react-redux';
 import '../loginPage/loginPage.css';
 import { userRegisterReducer } from '../../reducers/userReducers';
 
-const CreateUser = () => {
+const CreateUser = ({ cancelHandeler }) => {
   // refs
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
   const authTypeRef = useRef();
 
   const dispatch = useDispatch();
@@ -24,9 +25,9 @@ const CreateUser = () => {
   }, []);
 
   return (
-    <div>
-      <form className="login-form-container" onSubmit={submitHandler}>
-        <div className="logo">I3RC Poll USER REGISTER</div>
+    <div className="create-form-container">
+      <form className="form" onSubmit={submitHandler}>
+        <div className="logo">I3RC Poll User Register</div>
         <div className="input-field">
           <label htmlFor="">Name</label>
           <input
@@ -55,7 +56,15 @@ const CreateUser = () => {
           />
         </div>
         <div className="input-field">
-          <label htmlFor="">Email</label>
+          <label htmlFor="">Confirm Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            ref={confirmPasswordRef}
+            required
+          />
+        </div>
+        <div className="input-field">
           <label htmlFor="authType">Choose User Status:</label>
           <select ref={authTypeRef} name="authType">
             <option value="Data Collector">Data Collector</option>
@@ -64,7 +73,12 @@ const CreateUser = () => {
             <option value="System Admin">System Admin</option>
           </select>
         </div>
-        <button type="submit">Create User</button>
+        <button className="create-user-button" type="submit">
+          Create User
+        </button>
+        <button className="cancel-button" onClick={cancelHandeler}>
+          Cancel
+        </button>
       </form>
     </div>
   );

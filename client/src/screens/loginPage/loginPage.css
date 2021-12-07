@@ -1,10 +1,13 @@
-.login-form-container {
-  height: max-content;
-  width: max-content;
-  border: 1px solid black;
-  padding: 25px;
+.create-form-container {
+  backdrop-filter: blur(2px);
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 }
 .login-page {
   height: 100vh;
@@ -25,18 +28,22 @@ label {
 input {
   font-size: 20px;
   height: 35px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid rgb(141, 141, 141);
 }
 input:focus {
   outline: none;
 }
-button {
+.login-button {
+  color: white;
   height: 45px;
   margin: 20px 0;
-  background-color: rgb(0, 180, 0);
-  border-radius: 4px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 8px;
   font-size: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 .logo {
   width: 100%;
@@ -44,4 +51,42 @@ button {
   align-items: center;
   justify-content: center;
   font-size: 30px;
+}
+
+.form {
+  background-color: white;
+  max-height: 90%;
+  width: max-content;
+  border: 1px solid rgb(34, 34, 34);
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 1px 2px 5px 0px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.create-user-button,
+.cancel-button {
+  color: white;
+  min-height: 45px;
+  height: 45px;
+  margin: 20px 0;
+  background-color: rgb(0, 0, 0);
+  border-radius: 8px;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+select {
+  font-size: 20px;
+  height: 35px;
+  border-radius: 8px;
+  border: 1px solid rgb(141, 141, 141);
+  cursor: pointer;
+}
+select:focus {
+  outline: none;
 }
