@@ -5,7 +5,7 @@ import Dashboard1 from './screens/dashboards/dashboard1';
 
 function App() {
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { userInfo, error } = userLogin;
 
   return (
     <Router>
@@ -14,7 +14,7 @@ function App() {
           {userInfo?.authType === 'Data Collector' ? (
             <Redirect to="/home" />
           ) : (
-            <LoginPage />
+            <LoginPage error={error} />
           )}
         </Route>
         <Route exact path="/home">

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './loginPage.css';
 import { userLoginAction } from '../../actions/userActions';
@@ -6,11 +6,13 @@ import { userLoginAction } from '../../actions/userActions';
 function LoginPage() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const [loginError, setLoginError] = useState();
 
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const { loading, userInfo, error } = userLogin;
+  console.log(loading);
 
   const submitHandler = useCallback(
     async (e) => {
@@ -47,6 +49,7 @@ function LoginPage() {
         <button className="login-button" type="submit">
           Login
         </button>
+        <div className="login-error">{loginError}</div>
       </form>
     </div>
   );
