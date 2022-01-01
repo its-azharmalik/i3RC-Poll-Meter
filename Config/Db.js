@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const colors = require('colors');
 
 const username = "Bizer44";
 const password = "sexyboltenabhai";
@@ -16,7 +17,7 @@ mongoose.connect(
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
-    console.log("Database Connected successfully");
+    console.log(`Database Connected successfully`.bold.blue);
 }); 
 
 module.exports = db;

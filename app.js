@@ -5,11 +5,14 @@ const router = require('./Routes/auth.routes');
 const brcypt = require('bcrypt');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const colors = require('colors');
 
 
 const app = express();
 
 dotenv.config();
+
+const PORT = process.env.PORT ;
 
 //middlewares
 app.use(express.json());
@@ -29,4 +32,4 @@ app.get('/home' , (req,res)=>{
     res.send("Home");
 })
 
-app.listen('5001' , () => console.log("server connected on port 5001") )
+app.listen(PORT , () => console.log(`server connected on port ${`${PORT}`.bold.yellow}`) )
