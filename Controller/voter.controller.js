@@ -1,15 +1,37 @@
 const { User , Voter } = require("../Schemas");
 
 const postVoterData = async (req,res) =>{
+    let data = req.body;
     try {
-        const data = req.body;
-        await Voter.create(data);
+        data = await Voter.create(req.body);
         res.json({
-            note : "Successfully added Voter data" ,
-            data : data
+            note : "success" ,
+            data 
         });
     } catch (error) {
-        res.status(400).json(error);
+        res.status(400).json({ 
+            note : "erorr", 
+            error , 
+            data
+        });
+    }
+}
+
+const updateVoterdata = async (req,res) =>{
+    let data = req.body;
+    const id = req.params.id;
+    try {
+        data = await Voter.findByIdAndUpdate( id , req.body);
+        res.json({
+            note : "success" ,
+            data 
+        });
+    } catch (error) {
+        res.status(400).json({ 
+            note : "erorr", 
+            error , 
+            data
+        });
     }
 }
 
@@ -21,7 +43,8 @@ const getAllVoterdata = async (req,res) =>{
             data 
         })
     } catch (error) {
-        res.status(400).json(error);
+        res.status(400).json({ note : "erorr", 
+error});
     }
 }
 
@@ -34,7 +57,8 @@ const getVoterdata = async (req,res) =>{
             data 
         })
     } catch (error) {
-        res.status(400).json(error);
+        res.status(400).json({ note : "erorr", 
+error});
     }
 }
 
@@ -47,7 +71,21 @@ const deleteVoterdata = async (req,res) =>{
             data 
         })
     } catch (error) {
-        res.status(400).json(error);
+        res.status(400).json({ note : "erorr", 
+error});
+    }
+}
+
+const getVoterdataWithVoterId = async (req,res) =>{
+    try {
+        const id = req.params.id;
+        const data = await Voter.find({ "Upload_data.Voter_ID" : id });
+        res.json({
+            note : "success",
+            data 
+        })
+    } catch (error) {
+        res.status(400).json({ note : "erorr", error});
     }
 }
 
@@ -55,5 +93,7 @@ module.exports = {
     postVoterData,
     getAllVoterdata,
     getVoterdata,
-    deleteVoterdata
+    deleteVoterdata,
+    getVoterdataWithVoterId,
+    updateVoterdata
 }
