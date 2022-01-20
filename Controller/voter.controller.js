@@ -38,10 +38,7 @@ const updateVoterdata = async (req,res) =>{
 const getAllVoterdata = async (req,res) =>{
     try {
         const data = await Voter.find({});
-        res.json({
-            note : "success",
-            data 
-        })
+        res.send(data)
     } catch (error) {
         res.status(400).json({ note : "erorr", 
 error});
