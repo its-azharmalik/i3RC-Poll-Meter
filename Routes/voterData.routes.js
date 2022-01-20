@@ -5,8 +5,8 @@ const { isAuthenticated, checkauth, isPollAdminClient , isDataCollecter , isData
 const { postVoterData , getAllVoterdata, getVoterdata, deleteVoterdata , getVoterdataWithVoterId, updateVoterdata } = require('../Controller/voter.controller');
 
 router.post('/voterdata', isAuthenticated , isDataCollecter , postVoterData);
-router.get('/voterdata' , isAuthenticated , isDataCollecterOR, getAllVoterdata);
-router.get('/voterdata/:id',isAuthenticated , isDataCollecterOR , getVoterdata);
+router.get('/voterdata' , getAllVoterdata);
+router.get('/voterdata/:id', getVoterdata);
 router.delete('/voterdata/:id', isAuthenticated ,deleteVoterdata);
 router.put('/voterdata/:id'  , isAuthenticated, updateVoterdata);
 
