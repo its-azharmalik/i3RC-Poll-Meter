@@ -3,13 +3,13 @@ const mongoose = require("mongoose");
 const voterSchema = new mongoose.Schema({
   srNo: {
     type: Number,
-    required: true,
+    // required: true,
     unique: true,
   },
   Upload_data: {
     Lok_Sabha_Name: {
       type: String,
-      // required : true ,
+      // required: true,
     },
     Lok_Sabha_Number: {
       type: Number,
@@ -37,7 +37,7 @@ const voterSchema = new mongoose.Schema({
     },
     Voter_ID: {
       type: Number,
-      required: true,
+      // required: true,
       unique: true,
     },
     Locality: {
@@ -46,19 +46,19 @@ const voterSchema = new mongoose.Schema({
     },
     Name: {
       type: String,
-      required: true,
+      // required: true,
     },
     Address: {
       type: String,
-      required: true,
+      // required: true,
     },
     Gender: {
       type: String,
-      required: true,
+      // required: true,
     },
     Age: {
       type: Number,
-      required: true,
+      // required: true,
     },
     Father_or_Husbands_name: {
       type: String,
@@ -86,11 +86,11 @@ const voterSchema = new mongoose.Schema({
       Election_Data_ID: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Election_Data",
-        required: true,
+        // required: true,
       },
       Year: {
         type: Number,
-        required: true,
+        // required: true,
       },
     },
   ],

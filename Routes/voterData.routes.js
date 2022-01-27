@@ -1,15 +1,32 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const { isAuthenticated, checkauth, isPollAdminClient , isDataCollecter , isDataCollecterOR , isBLO_OR , isPollAdminClientOR , isSystemAdminOR , isSystemAdmin } = require('../Config');
-const { postVoterData , getAllVoterdata, getVoterdata, deleteVoterdata , getVoterdataWithVoterId, updateVoterdata } = require('../Controller/voter.controller');
+const {
+  isAuthenticated,
+  checkauth,
+  isPollAdminClient,
+  isDataCollecter,
+  isDataCollecterOR,
+  isBLO_OR,
+  isPollAdminClientOR,
+  isSystemAdminOR,
+  isSystemAdmin,
+} = require("../Config");
+const {
+  postVoterData,
+  getAllVoterdata,
+  getVoterdata,
+  deleteVoterdata,
+  getVoterdataWithVoterId,
+  updateVoterdata,
+} = require("../Controller/voter.controller");
 
-router.post('/voterdata', isAuthenticated , isDataCollecter , postVoterData);
-router.get('/voterdata' , getAllVoterdata);
-router.get('/voterdata/:id', getVoterdata);
-router.delete('/voterdata/:id', isAuthenticated ,deleteVoterdata);
-router.put('/voterdata/:id'  , isAuthenticated, updateVoterdata);
+router.post("/voterdata", isAuthenticated, postVoterData);
+router.get("/voterdata", getAllVoterdata);
+router.get("/voterdata/:id", getVoterdata);
+router.delete("/voterdata/:id", isAuthenticated, deleteVoterdata);
+router.put("/voterdata/:id", isAuthenticated, updateVoterdata);
 
-router.get('/voterdatawithvoterid/:id' , getVoterdataWithVoterId);
+router.get("/voterdatawithvoterid/:id", getVoterdataWithVoterId);
 
 module.exports = router;
