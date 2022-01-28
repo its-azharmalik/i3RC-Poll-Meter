@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
 const voterSchema = new mongoose.Schema({
-  srNo: {
-    type: Number,
-    // required: true,
-    unique: true,
-  },
   Upload_data: {
     Lok_Sabha_Name: {
       type: String,
