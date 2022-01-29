@@ -32,7 +32,7 @@ const voterSchema = new mongoose.Schema({
     },
     Voter_ID: {
       type: Number,
-      // required: true,
+      required: true,
       unique: true,
     },
     Locality: {

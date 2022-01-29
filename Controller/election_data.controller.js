@@ -3,6 +3,7 @@ const { Voter, Election_Data } = require("../Schemas");
 const postElectionData = async (req, res) => {
   const voterid = req.params.voterid;
   let data = req.body;
+  console.log(data);
   try {
     const new_election_data = await Election_Data.create(data.data);
     const new_voter_data = await Voter.findByIdAndUpdate(
@@ -27,7 +28,6 @@ const postElectionData = async (req, res) => {
       error,
       data,
     });
-    console.log(error);
   }
 };
 
@@ -100,20 +100,20 @@ const getAllElectionData = async (req, res) => {
     const data = await Election_Data.find({});
     res.json({
       note: "success",
-      data
-    })
+      data,
+    });
   } catch (error) {
     res.status(400).json({
       note: "error",
-      error
-    })
+      error,
+    });
   }
-}
+};
 
 module.exports = {
   postElectionData,
   getElectionData,
   updateElectionData,
   deleteElectionData,
-  getAllElectionData
+  getAllElectionData,
 };
