@@ -95,9 +95,25 @@ const deleteElectionData = async (req, res) => {
   }
 };
 
+const getAllElectionData = async (req, res) => {
+  try {
+    const data = await Election_Data.find({});
+    res.json({
+      note: "success",
+      data
+    })
+  } catch (error) {
+    res.status(400).json({
+      note: "error",
+      error
+    })
+  }
+}
+
 module.exports = {
   postElectionData,
   getElectionData,
   updateElectionData,
   deleteElectionData,
+  getAllElectionData
 };
