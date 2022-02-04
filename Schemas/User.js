@@ -20,7 +20,13 @@ const userSchema = new mongoose.Schema({
         type : String,
         enum : authType ,
         required : true
-    }
+    },
+    party : {
+        type : String,
+    },
+    constituency_access : [{
+        type : String ,
+    }],
 })
 
 const User = mongoose.model("User" ,userSchema);

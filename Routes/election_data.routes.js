@@ -10,10 +10,12 @@ const {
   updateElectionData,
   deleteElectionData,
   getAllElectionData,
+  getAllElectionDataLkn
 } = require("../Controller/election_data.controller");
 const router = express.Router();
 
 router.get("/electiondata", isAuthenticated, getAllElectionData);
+router.get("/electiondatalkn", isAuthenticated, getAllElectionDataLkn);
 router.post("/electiondata/:voterid", isAuthenticated, postElectionData);
 router.get(
   "/electiondata/:electiondataid",

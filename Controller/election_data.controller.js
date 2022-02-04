@@ -2,17 +2,24 @@ const { Voter, Election_Data } = require("../Schemas");
 
 const postElectionData = async (req, res) => {
   const voterid = req.params.voterid;
+  console.log(voterid);
   let data = req.body;
   try {
+    const VoterData = await Voter.findById(voterid)
+    const Lok_Sabha_Number  = VoterData.Upload_data?.Lok_Sabha_Number;
+    if(!Lok_Sabha_Number){
+      res.status(400).json({
+        note:'LOK SABHA NUMBER DOES NOT EXIST',
+      })
+    }else{
+      data.data.Lok_Sabha_Number = Lok_Sabha_Number;
+    }
     const new_election_data = await Election_Data.create(data.data);
     const new_voter_data = await Voter.findByIdAndUpdate(
-      { _id: voterid },
+      { _id : voterid },
       {
         $push: {
-          Yearly_Election_Data: {
-            Year: req.body.Year,
             Election_Data_ID: new_election_data._id,
-          },
         },
       }
     );
@@ -108,12 +115,46 @@ const getAllElectionData = async (req, res) => {
       error
     })
   }
+};
+
+const getAllElectionDataLkn = async (req,res) =>{
+  try {
+    const q = req.query;
+    const keys = Object.keys(q);
+    if(keys.length === 0){
+      res.status(200).json({
+        note:"NO DATA AVAILABLE QUERIES REQUIRED"
+      })
+    }
+    else{
+      const ED_Data = await Election_Data.find({});
+      let final_data =[];
+      keys.forEach((key) => {
+        let  datas = ED_Data;
+        const queryLkn = parseInt(q[key]);
+        datas.filter((data) => data.Lok_Sabha_Number === queryLkn)  
+        final_data.push(datas);
+      });
+      res.json({
+        note : "succes",
+        final_data
+      })
+    }
+  } catch (error) {
+    res.status(400).json({
+      note: "error",
+      error
+    })
+  }
 }
+
+// { lkn: '488486864', lkn1: '1' }
 
 module.exports = {
   postElectionData,
   getElectionData,
   updateElectionData,
   deleteElectionData,
-  getAllElectionData
+  getAllElectionData,
+  getAllElectionDataLkn
 };

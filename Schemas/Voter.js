@@ -76,19 +76,11 @@ const voterSchema = new mongoose.Schema({
       // required : true
     },
   },
-  Yearly_Election_Data: [
-    {
-      Election_Data_ID: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: "Election_Data",
-        // required: true,
-      },
-      Year: {
-        type: Number,
-        // required: true,
-      },
-    },
-  ],
+  Election_Data_ID: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "Election_Data",
+    // required: true,
+  }
 });
 
 const Voter = mongoose.model("Voter", voterSchema);

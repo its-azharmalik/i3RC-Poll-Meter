@@ -49,6 +49,38 @@ const getAllVoterdata = async (req, res) => {
   }
 };
 
+const getAllVoterDataLkn = async (req,res) =>{
+  try {
+    const q = req.query;
+    const keys = Object.keys(q);
+    if(keys.length === 0){
+      res.status(200).json({
+        note:"NO DATA AVAILABLE QUERIES REQUIRED"
+      })
+    }
+    else{
+      const allVoterData = await Voter.find({});
+      let final_data =[];
+      keys.forEach((key) => {
+        let  datas = allVoterData;
+        const queryLkn = parseInt(q[key]);
+        datas.filter((data) => data.Lok_Sabha_Number === queryLkn)  
+        console.log(datas);
+        final_data.push(datas);
+      });
+      res.json({
+        note : "succes",
+        final_data
+      })
+    }
+  } catch (error) {
+    res.status(400).json({
+      note: "error",
+      error
+    })
+  }
+}
+
 const getVoterdata = async (req, res) => {
   try {
     const id = req.params.id;
@@ -95,4 +127,5 @@ module.exports = {
   deleteVoterdata,
   getVoterdataWithVoterId,
   updateVoterdata,
+  getAllVoterDataLkn
 };

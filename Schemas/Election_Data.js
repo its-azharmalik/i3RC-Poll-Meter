@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Voter = require('./Voter')
 
 const election_dataSchema = new mongoose.Schema({
   National_five_issues: {
@@ -212,6 +213,42 @@ const election_dataSchema = new mongoose.Schema({
       type: String,
       // required: true,
     },
+    BSP1: {
+      type: String,
+      // required: true,
+    },
+    BSP2: {
+      type: String,
+      // required: true,
+    },
+    BSP3: {
+      type: String,
+      // required: true,
+    },
+    SP1: {
+      type: String,
+      // required: true,
+    },
+    SP2: {
+      type: String,
+      // required: true,
+    },
+    SP3: {
+      type: String,
+      // required: true,
+    },
+    TMC1: {
+      type: String,
+      // required: true,
+    },
+    TMC2: {
+      type: String,
+      // required: true,
+    },
+    TMC3: {
+      type: String,
+      // required: true,
+    },
     other1: {
       type: String,
       // required: true,
@@ -223,19 +260,7 @@ const election_dataSchema = new mongoose.Schema({
     other3: {
       type: String,
       // required: true,
-    },
-    others1: {
-      type: String,
-      // required: true,
-    },
-    others2: {
-      type: String,
-      // required: true,
-    },
-    others3: {
-      type: String,
-      // required: true,
-    },
+    }
   },
   Parameter_to_assess: {
     name1_PPAP: {
@@ -416,38 +441,22 @@ const election_dataSchema = new mongoose.Schema({
     },
   },
   old_data_for_future_reference: {
-    Voted_for_mp: {
+    Voted_for_mp: [{
       type: Number,
       // required: true
-    },
-    Voted_for_mla: {
+    }],
+    Voted_for_mla:[{
       type: Number,
       // required: true
-    },
-    Will_vote: {
+    }],
+    Will_vote: [{
       type: Number,
       // required: true
-    },
-    loyalty1: {
+    }],
+    loyalty1: [{
       type: Number,
       // required: true
-    },
-    loyalty2: {
-      type: Number,
-      // required: true
-    },
-    loyalty3: {
-      type: Number,
-      // required: true
-    },
-    loyalty4: {
-      type: Number,
-      // required: true
-    },
-    loyalty5: {
-      type: Number,
-      // required: true
-    },
+    }],
   },
   Numbers_of_voters_in_house: {
     type: Number,
@@ -469,6 +478,10 @@ const election_dataSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
+  Lok_Sabha_Number:{
+    type: Number,
+    required: true
+  }
 });
 
 const Election_Data = mongoose.model("Election_Data", election_dataSchema);
