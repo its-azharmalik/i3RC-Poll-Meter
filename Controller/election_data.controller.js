@@ -4,6 +4,7 @@ const postElectionData = async (req, res) => {
   const voterid = req.params.voterid;
   console.log(voterid);
   let data = req.body;
+  console.log(data);
   try {
     const VoterData = await Voter.findById(voterid)
     const Lok_Sabha_Number  = VoterData.Upload_data?.Lok_Sabha_Number;
@@ -34,7 +35,6 @@ const postElectionData = async (req, res) => {
       error,
       data,
     });
-    console.log(error);
   }
 };
 
@@ -107,13 +107,13 @@ const getAllElectionData = async (req, res) => {
     const data = await Election_Data.find({});
     res.json({
       note: "success",
-      data
-    })
+      data,
+    });
   } catch (error) {
     res.status(400).json({
       note: "error",
-      error
-    })
+      error,
+    });
   }
 };
 

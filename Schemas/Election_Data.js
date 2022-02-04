@@ -5,7 +5,7 @@ const election_dataSchema = new mongoose.Schema({
   National_five_issues: {
     Issue_1: {
       type: Number,
-      // required : true,
+      required: true,
     },
     Issue_2: {
       type: Number,

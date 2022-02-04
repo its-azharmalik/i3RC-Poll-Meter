@@ -2,7 +2,6 @@ const { User, Voter } = require("../Schemas");
 
 const postVoterData = async (req, res) => {
   let data = req.body;
-  console.log(data);
   try {
     data = await Voter.create(req.body);
     res.json({
@@ -15,7 +14,6 @@ const postVoterData = async (req, res) => {
       error,
       data,
     });
-    console.log(error);
   }
 };
 
