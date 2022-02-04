@@ -63,24 +63,12 @@ const voterSchema = new mongoose.Schema({
       type: Number,
       // required : true
     },
-    Contact_number_for_all_active_voters: {
-      type: Number,
-      // required : true
-    },
-    Qualification: {
-      type: Number,
-      // required : true
-    },
-    Ocuupation: {
-      type: Number,
-      // required : true
-    },
   },
   Election_Data_ID: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Election_Data",
     // required: true,
-  }
+  },
 });
 
 const Voter = mongoose.model("Voter", voterSchema);

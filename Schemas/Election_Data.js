@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Voter = require('./Voter')
+const Voter = require("./Voter");
 
 const election_dataSchema = new mongoose.Schema({
   National_five_issues: {
@@ -260,7 +260,7 @@ const election_dataSchema = new mongoose.Schema({
     other3: {
       type: String,
       // required: true,
-    }
+    },
   },
   Parameter_to_assess: {
     name1_PPAP: {
@@ -441,22 +441,30 @@ const election_dataSchema = new mongoose.Schema({
     },
   },
   old_data_for_future_reference: {
-    Voted_for_mp: [{
-      type: Number,
-      // required: true
-    }],
-    Voted_for_mla:[{
-      type: Number,
-      // required: true
-    }],
-    Will_vote: [{
-      type: Number,
-      // required: true
-    }],
-    loyalty1: [{
-      type: Number,
-      // required: true
-    }],
+    Voted_for_mp: [
+      {
+        type: Number,
+        // required: true
+      },
+    ],
+    Voted_for_mla: [
+      {
+        type: Number,
+        // required: true
+      },
+    ],
+    Will_vote: [
+      {
+        type: Number,
+        // required: true
+      },
+    ],
+    loyalty1: [
+      {
+        type: Number,
+        // required: true
+      },
+    ],
   },
   Numbers_of_voters_in_house: {
     type: Number,
@@ -478,10 +486,22 @@ const election_dataSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
-  Lok_Sabha_Number:{
+  Contact_number_for_all_active_voters: {
     type: Number,
-    required: true
-  }
+    // required : true
+  },
+  Qualification: {
+    type: Number,
+    // required : true
+  },
+  Ocuupation: {
+    type: Number,
+    // required : true
+  },
+  Lok_Sabha_Number: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Election_Data = mongoose.model("Election_Data", election_dataSchema);
