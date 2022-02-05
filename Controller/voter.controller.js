@@ -62,9 +62,9 @@ const getAllVoterDataLkn = async (req,res) =>{
       keys.forEach((key) => {
         let  datas = allVoterData;
         const queryLkn = parseInt(q[key]);
-        datas.filter((data) => data.Lok_Sabha_Number === queryLkn)  
-        console.log(datas);
-        final_data.push(datas);
+        final_data.push(datas.filter(function(data) {
+          return data.Upload_data.Lok_Sabha_Number === queryLkn;
+        }));
       });
       res.json({
         note : "succes",

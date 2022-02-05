@@ -130,10 +130,11 @@ const getAllElectionDataLkn = async (req,res) =>{
       const ED_Data = await Election_Data.find({});
       let final_data =[];
       keys.forEach((key) => {
-        let  datas = ED_Data;
+        let datas = ED_Data;
         const queryLkn = parseInt(q[key]);
-        datas.filter((data) => data.Lok_Sabha_Number === queryLkn)  
-        final_data.push(datas);
+        final_data.push(datas.filter(function (data) {
+          return data.Lok_Sabha_Number === queryLkn;
+        }));
       });
       res.json({
         note : "succes",
