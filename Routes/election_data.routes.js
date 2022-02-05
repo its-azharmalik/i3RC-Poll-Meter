@@ -25,8 +25,8 @@ router.get(
 );
 router.put(
   '/electiondata/:electiondataid',
-  isAuthenticated,
-  isDataCollecter,
+  // isAuthenticated,
+  // isDataCollecter,
   updateElectionData
 );
 // router.delete('/electiondata/:electiondataid', deleteElectionData );

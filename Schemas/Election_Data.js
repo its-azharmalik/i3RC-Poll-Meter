@@ -475,7 +475,13 @@ const election_dataSchema = new mongoose.Schema({
         // required: true
       },
     ],
-    loyalty1: [
+    Dc_Party: [
+      {
+        type: Number,
+        // required: true
+      },
+    ],
+    loyalty: [
       {
         type: Number,
         // required: true
