@@ -1,30 +1,30 @@
-const express = require("express");
+const express = require('express');
 const {
   isAuthenticated,
   isDataCollecterOR,
   isDataCollecter,
-} = require("../Config");
+} = require('../Config');
 const {
   postElectionData,
   getElectionData,
   updateElectionData,
   deleteElectionData,
   getAllElectionData,
-  getAllElectionDataLkn
-} = require("../Controller/election_data.controller");
+  getAllElectionDataLkn,
+} = require('../Controller/election_data.controller');
 const router = express.Router();
 
-router.get("/electiondata", isAuthenticated, getAllElectionData);
-router.get("/electiondatalkn", isAuthenticated, getAllElectionDataLkn);
-router.post("/electiondata/:voterid", isAuthenticated, postElectionData);
+router.get('/electiondata', isAuthenticated, getAllElectionData);
+router.get('/electiondatalkn', isAuthenticated, getAllElectionDataLkn);
+router.post('/electiondata/:voterid', isAuthenticated, postElectionData);
 router.get(
-  "/electiondata/:electiondataid",
-  isAuthenticated,
-  isDataCollecter,
+  '/electiondata/:electiondataid',
+  // isAuthenticated,
+  // isDataCollecter,
   getElectionData
 );
 router.put(
-  "/electiondata/:electiondataid",
+  '/electiondata/:electiondataid',
   isAuthenticated,
   isDataCollecter,
   updateElectionData
