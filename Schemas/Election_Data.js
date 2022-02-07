@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Voter = require('./Voter');
+const mongoose = require("mongoose");
+const Voter = require("./Voter");
 
 const election_dataSchema = new mongoose.Schema({
   National_five_issues: {
@@ -524,9 +524,12 @@ const election_dataSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  influence: {
+    type: Number,
+  },
 });
 
-const Election_Data = mongoose.model('Election_Data', election_dataSchema);
+const Election_Data = mongoose.model("Election_Data", election_dataSchema);
 
 module.exports = Election_Data;
 
