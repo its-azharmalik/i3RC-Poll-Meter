@@ -1,1 +1,1 @@
-module.exports = authType = ["System Admin" , "Poll Admin Client" , "BLO" , "Data Collector"];
+module.exports = authType = ["System Admin" , "Poll Admin Client" , "Data Collector"];

@@ -4,15 +4,8 @@ const jwt = require('jsonwebtoken');
 
 const createUser = async (req, res) => {
     try {
-        const { name, email, password, authType } = req.body;
-        const user = {
-        name,
-        email,
-        password,
-        authType,
-        };
-        user.password = await bcrypt.hash(req.body.password, 10);
-        const userCreated = await User.create(user);
+        req.body.password = await bcrypt.hash(req.body.password, 10);
+        const userCreated = await User.create(req.body);
         res.send(userCreated);
     } catch (error) {
         res.send(error);

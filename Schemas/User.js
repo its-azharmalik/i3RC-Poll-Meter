@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     name : {
         type : String ,
         required : true ,
-        unique : true 
+        // unique : true 
     }, 
     email : {
         type : String ,
@@ -47,13 +47,13 @@ const userSchema = new mongoose.Schema({
             }]
         }],
     }],
-    polling_booth_access : [{
+    Data_Collector_access : [{
         state : {type: String},
         cities :[{
             city : {
                 type : String,
             },
-            wdns : [{
+            pbns :[{
                 type : Number
             }]
         }],

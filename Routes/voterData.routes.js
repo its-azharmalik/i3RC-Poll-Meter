@@ -7,7 +7,6 @@ const {
   isPollAdminClient,
   isDataCollecter,
   isDataCollecterOR,
-  isBLO_OR,
   isPollAdminClientOR,
   isSystemAdminOR,
   isSystemAdmin,
@@ -20,11 +19,15 @@ const {
   getVoterdataWithVoterId,
   updateVoterdata,
   getAllVoterDataLkn,
+  getAllVoterDataVdn,
+  getAllVoterDataWdn,
 } = require("../Controller/voter.controller");
 
 router.post("/voterdata", isAuthenticated, postVoterData);
 router.get("/voterdata", getAllVoterdata);
 router.get("/voterdatalkn", getAllVoterDataLkn);
+router.get("/voterdatavdn", getAllVoterDataVdn);
+router.get("/voterdatawdn", getAllVoterDataWdn);
 router.get("/voterdata/:id", getVoterdata);
 router.delete("/voterdata/:id", isAuthenticated, deleteVoterdata);
 router.put("/voterdata/:id", isAuthenticated, updateVoterdata);
