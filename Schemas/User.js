@@ -24,8 +24,39 @@ const userSchema = new mongoose.Schema({
     party : {
         type : String,
     },
-    constituency_access : [{
+    lok_sabha_access : [{
         type : String ,
+    }],
+    vidhan_sabha_access : [{
+        state:{
+            type: String,
+            // required:true,
+        },
+        vdns :[{
+            type : Number,
+        }]
+    }],
+    ward_no_access : [{
+        state : {type: String},
+        cities :[{
+            city : {
+                type : String,
+            },
+            wdns : [{
+                type : Number
+            }]
+        }],
+    }],
+    polling_booth_access : [{
+        state : {type: String},
+        cities :[{
+            city : {
+                type : String,
+            },
+            wdns : [{
+                type : Number
+            }]
+        }],
     }],
 })
 

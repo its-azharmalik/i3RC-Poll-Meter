@@ -11,10 +11,6 @@ const voterSchema = new mongoose.Schema({
       type: String,
       // required: true,
     },
-    Lok_Sabha_Name: {
-      type: String,
-      // required: true,
-    },
     Gender: {
       type: String,
       // required: true,
@@ -28,6 +24,27 @@ const voterSchema = new mongoose.Schema({
       // required:true
     },
     Address: {
+      type: String,
+      // required: true,
+    },
+    Village_Name: {
+      type: String,
+      // required : true ,
+    },
+    Ward_No: {
+      type: Number,
+      // required : true ,
+    },
+    state: {
+      type: String,
+      // required : true ,
+    }
+    ,
+    city: {
+      type: String,
+      // required : true ,
+    },
+    Lok_Sabha_Name: {
       type: String,
       // required: true,
     },
@@ -47,20 +64,10 @@ const voterSchema = new mongoose.Schema({
       type: Number,
       // required : true ,
     },
-    Village_Name: {
-      type: String,
-      // required : true ,
-    },
-    Ward_No: {
-      type: Number,
-      // required : true ,
-    },
-
     Locality: {
       type: String,
       // required : true ,
     },
-
     Voter_status: {
       type: Number,
       // required : true

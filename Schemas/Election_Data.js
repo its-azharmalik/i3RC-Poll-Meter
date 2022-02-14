@@ -524,9 +524,32 @@ const election_dataSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  Vidhan_Sabha_Number: {
+    type: Number,
+    required: true,
+  },
+  Ward_No: {
+    type: Number,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
   influence: {
     type: Number,
   },
+  voted:{
+    type :Number,
+    // required: true
+  },
+  last_mesg_date:{
+    type : Date,
+  }
 });
 
 const Election_Data = mongoose.model("Election_Data", election_dataSchema);

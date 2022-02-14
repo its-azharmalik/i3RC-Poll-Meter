@@ -11,11 +11,15 @@ const {
   deleteElectionData,
   getAllElectionData,
   getAllElectionDataLkn,
+  getAllElectionDataVdn,
+  getAllElectionDataWdn
 } = require("../Controller/election_data.controller");
 const router = express.Router();
 
 router.get("/electiondata", getAllElectionData);
 router.get("/electiondatalkn", isAuthenticated, getAllElectionDataLkn);
+router.get("/electiondatavdn", getAllElectionDataVdn);
+router.get("/electiondatawdn", getAllElectionDataWdn);
 router.post("/electiondata/:voterid", isAuthenticated, postElectionData);
 router.get(
   "/electiondata/:electiondataid",

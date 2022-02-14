@@ -2,18 +2,25 @@ const { Voter, Election_Data } = require("../Schemas");
 
 const postElectionData = async (req, res) => {
   const voterid = req.params.voterid;
-  console.log(voterid);
   let data = req.body;
-  console.log(data);
   try {
     const VoterData = await Voter.findById(voterid);
     const Lok_Sabha_Number = VoterData.Upload_data?.Lok_Sabha_Number;
-    if (!Lok_Sabha_Number) {
+    const Vidhan_Sabha_Number = VoterData.Upload_data?.Vidhan_Sabha_Number;
+    const Ward_No = VoterData.Upload_data?.Ward_No;
+    const state = VoterData.Upload_data?.state;
+    const city = VoterData.Upload_data?.city;
+    if (!Lok_Sabha_Number || !Vidhan_Sabha_Number || !Ward_No || !state || !city) {
       res.status(400).json({
-        note: "LOK SABHA NUMBER DOES NOT EXIST",
+        note: "LOK SABHA NUMBER , VIDHAN SABHA , WARD NO. , STATE OR CITY DOES NOT EXIST",
       });
     } else {
+      console.log(Vidhan_Sabha_Number,state,city);
       data.data.Lok_Sabha_Number = Lok_Sabha_Number;
+      data.data.Vidhan_Sabha_Number = Vidhan_Sabha_Number;
+      data.data.Ward_No = Ward_No;
+      data.data.state = state;
+      data.data.city = city;
     }
     const new_election_data = await Election_Data.create(data.data);
     const new_voter_data = await Voter.findByIdAndUpdate(
@@ -150,6 +157,83 @@ const getAllElectionDataLkn = async (req, res) => {
   }
 };
 
+const getAllElectionDataVdn = async (req, res) => {
+  try {
+    const q = req.query;
+    const state = q.state;
+    console.log(q , state );
+    const keys = Object.keys(q);
+    if (keys.length === 0) {
+      res.status(200).json({
+        note: "NO DATA AVAILABLE QUERIES REQUIRED",
+      });
+    } else {
+      console.log('H')
+      const ED_Data = await Election_Data.find({
+        state : state
+      });
+      let final_data = [];
+      keys.forEach((key) => {
+        let datas = ED_Data;
+        const queryVdn = parseInt(q[key]);
+        final_data.push(
+          datas.filter(function (data) {
+            return data.Vidhan_Sabha_Number === queryVdn;
+          })
+        );
+      });
+      res.json({
+        note: "succes",
+        final_data,
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      note: "error",
+      error,
+    });
+  }
+};
+
+const getAllElectionDataWdn = async (req, res) => {
+  try {
+    const q = req.query;
+    const state = q.state;
+    const city = q.city;
+    const keys = Object.keys(q);
+    if (keys.length === 0) {
+      res.status(200).json({
+        note: "NO DATA AVAILABLE QUERIES REQUIRED",
+      });
+    } else {
+      const ED_Data = await Election_Data.find({
+        state : state ,
+        city : city
+      });
+      let final_data = [];
+      keys.forEach((key) => {
+        let datas = ED_Data;
+        const queryWdn = parseInt(q[key]);
+        final_data.push(
+          datas.filter(function (data) {
+            return data.Ward_No === queryWdn;
+          })
+        );
+      });
+      res.json({
+        note: "succes",
+        final_data,
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      note: "error",
+      error,
+    });
+  }
+};
+
+
 // { lkn: '488486864', lkn1: '1' }
 
 module.exports = {
@@ -159,4 +243,6 @@ module.exports = {
   deleteElectionData,
   getAllElectionData,
   getAllElectionDataLkn,
+  getAllElectionDataVdn,
+  getAllElectionDataWdn
 };
