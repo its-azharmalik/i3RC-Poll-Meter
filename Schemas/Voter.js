@@ -60,7 +60,15 @@ const voterSchema = new mongoose.Schema({
       type: Number,
       // required : true,
     },
-    polling_Booth_number: {
+    polling_Booth_number_wdn: {
+      type: Number,
+      // required : true ,
+    },
+    polling_Booth_number_lkn: {
+      type: Number,
+      // required : true ,
+    },
+    polling_Booth_number_vdn: {
       type: Number,
       // required : true ,
     },
