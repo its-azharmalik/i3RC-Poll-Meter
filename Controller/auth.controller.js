@@ -1,6 +1,6 @@
-const { User } = require("../Schemas");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const { User } = require('../Schemas');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const createUser = async (req, res) => {
   try {
@@ -26,6 +26,7 @@ const LoginUser = async (req, res) => {
     res.json({
       AccessToken: accessToken,
       user: user[0],
+      authType: user[0].authType,
     });
   } catch (error) {
     res.status(400).json(error);
