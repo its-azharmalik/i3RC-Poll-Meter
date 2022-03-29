@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   },
   lok_sabha_access: [
     {
-      type: String,
+      type: Number,
     },
   ],
   vidhan_sabha_access: [
@@ -52,7 +52,7 @@ const userSchema = new mongoose.Schema({
           },
           wdns: [
             {
-              type: String,
+              type: Number,
             },
           ],
         },
@@ -69,7 +69,7 @@ const userSchema = new mongoose.Schema({
           },
           pbns: [
             {
-              type: Number,
+              type: String  ,
             },
           ],
         },

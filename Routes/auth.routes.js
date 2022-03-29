@@ -8,6 +8,6 @@ const {LoginUser , createUser , homeUser , allUsers} = require('../Controller/au
 router.post('/login', checkauth, LoginUser );
 router.post('/create', createUser);
 router.get('/home', isAuthenticated, homeUser);
-router.get('/allusers' , isAuthenticated , isPollAdminClient ,allUsers);
+router.get('/allusers'   ,allUsers);
 
 module.exports = router;
