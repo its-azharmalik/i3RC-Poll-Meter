@@ -49,7 +49,8 @@ const getAllVoterdata = async (req, res) => {
 
 const getAllVoterDataLkn = async (req, res) => {
   try {
-    const q = req.query;
+    const qwithUnderscores = req.query;
+    const q = qwithUnderscores.replace(/__/g, " ");
     const keys = Object.keys(q);
     if (keys.length === 0) {
       res.status(200).json({
@@ -83,7 +84,7 @@ const getAllVoterDataLkn = async (req, res) => {
 const getAllVoterDataVdn = async (req, res) => {
   try {
     const q = req.query;
-    const state = q.state;
+    const state = q.state.replace(/__/g, " ");
     const keys = Object.keys(q);
     if (keys.length === 0) {
       res.status(200).json({
@@ -119,7 +120,7 @@ const getAllVoterDataVdn = async (req, res) => {
 const getAllVoterDataWdn = async (req, res) => {
   try {
     const q = req.query;
-    const state = q.state;
+    const state = q.state.replace(/__/g, " ");
     const city = q.city;
     const keys = Object.keys(q);
     if (keys.length === 0) {
