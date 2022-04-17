@@ -10,12 +10,18 @@ const postElectionData = async (req, res) => {
     const Ward_No = VoterData.Upload_data?.Ward_No;
     const state = VoterData.Upload_data?.state;
     const city = VoterData.Upload_data?.city;
-    if (!Lok_Sabha_Number || !Vidhan_Sabha_Number || !Ward_No || !state || !city) {
+    if (
+      !Lok_Sabha_Number ||
+      !Vidhan_Sabha_Number ||
+      !Ward_No ||
+      !state ||
+      !city
+    ) {
       res.status(400).json({
         note: "LOK SABHA NUMBER , VIDHAN SABHA , WARD NO. , STATE OR CITY DOES NOT EXIST",
       });
     } else {
-      console.log(Vidhan_Sabha_Number,state,city);
+      console.log(Vidhan_Sabha_Number, state, city);
       data.data.Lok_Sabha_Number = Lok_Sabha_Number;
       data.data.Vidhan_Sabha_Number = Vidhan_Sabha_Number;
       data.data.Ward_No = Ward_No;
@@ -126,7 +132,8 @@ const getAllElectionData = async (req, res) => {
 
 const getAllElectionDataLkn = async (req, res) => {
   try {
-    const q = req.query;
+    const qwithUnderscores = req.query;
+    const q = qwithUnderscores.replace(/__/g, " ");
     const keys = Object.keys(q);
     if (keys.length === 0) {
       res.status(200).json({
@@ -160,17 +167,19 @@ const getAllElectionDataLkn = async (req, res) => {
 const getAllElectionDataVdn = async (req, res) => {
   try {
     const q = req.query;
-    const state = q.state;
-    console.log(q , state );
+    const stateWithUnderscores = q.state;
+    const state = stateWithUnderscores.replace(/__/g, " ");
+
+    console.log(q, state);
     const keys = Object.keys(q);
     if (keys.length === 0) {
       res.status(200).json({
         note: "NO DATA AVAILABLE QUERIES REQUIRED",
       });
     } else {
-      console.log('H')
+      console.log("H");
       const ED_Data = await Election_Data.find({
-        state : state
+        state: state,
       });
       let final_data = [];
       keys.forEach((key) => {
@@ -198,17 +207,20 @@ const getAllElectionDataVdn = async (req, res) => {
 const getAllElectionDataWdn = async (req, res) => {
   try {
     const q = req.query;
-    const state = q.state;
-    const city = q.city;
+    const stateWithUnderscores = q.state;
+    const state = stateWithUnderscores.replace(/__/g, " ");
+    const cityWithUnderscores = q.city;
+    const city = cityWithUnderscores.replace(/__/g, " ");
     const keys = Object.keys(q);
+    console.log(keys, state, city);
     if (keys.length === 0) {
       res.status(200).json({
         note: "NO DATA AVAILABLE QUERIES REQUIRED",
       });
     } else {
       const ED_Data = await Election_Data.find({
-        state : state ,
-        city : city
+        state: state,
+        city: city,
       });
       let final_data = [];
       keys.forEach((key) => {
@@ -233,7 +245,6 @@ const getAllElectionDataWdn = async (req, res) => {
   }
 };
 
-
 // { lkn: '488486864', lkn1: '1' }
 
 module.exports = {
@@ -244,5 +255,5 @@ module.exports = {
   getAllElectionData,
   getAllElectionDataLkn,
   getAllElectionDataVdn,
-  getAllElectionDataWdn
+  getAllElectionDataWdn,
 };
